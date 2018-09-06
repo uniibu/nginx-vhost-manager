@@ -1,5 +1,5 @@
 {
-  "name": "nginx-vhost-manager",
+  "name": "nv-gui",
   "version": "1.0.0",
   "description": "Nginx vhost manager",
   "author": "vhanni <bayanipsayoiii@gmail.com>",
