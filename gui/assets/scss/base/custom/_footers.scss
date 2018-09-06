@@ -1,0 +1,45 @@
+.footer{
+    padding: 22px 0 18px;
+    border-top: 1px solid #ddd;
+    box-shadow: none;
+
+    &.footer-default{
+        background-color: #f2f2f2;
+    }
+
+    nav{
+        display: inline-block;
+        padding-left: 0;
+    }
+    ul{
+        margin-bottom: 0;
+        padding: 0;
+        list-style: none;
+
+        li{
+            display: inline-block;
+            font-size: 14px;
+            color: #66615b;
+            a{
+                color: inherit;
+                padding: 0 $padding-base-vertical;
+                text-decoration: none;
+
+                &:hover{
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+
+    .copyright{
+        font-size: $font-size-small;
+        line-height: 1.8;
+    }
+
+    &:after{
+        display: table;
+        clear: both;
+        content: " ";
+    }
+}

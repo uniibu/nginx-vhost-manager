@@ -1,0 +1,34 @@
+
+@import 'custom/variables';
+@import 'custom/mixins';
+
+// Core CSS
+@import "custom/buttons.scss";
+@import "custom/inputs.scss";
+@import "custom/typography.scss";
+@import "custom/misc.scss";
+@import "custom/checkboxes-radio.scss";
+
+
+// components
+@import "custom/navbar.scss";
+@import "custom/page-header.scss";
+@import "custom/dropdown.scss";
+@import "custom/alerts.scss";
+@import "custom/images.scss";
+@import "custom/nucleo-outline.scss";
+@import "custom/tables.scss";
+@import "custom/sidebar-and-main-panel.scss";
+@import "custom/footers.scss";
+@import "custom/fixed-plugin.scss";
+@import "custom/themify-icons.scss";
+// cards
+@import "custom/cards.scss";
+@import "custom/cards/card-plain.scss";
+@import "custom/cards/card-chart.scss";
+@import "custom/cards/card-user.scss";
+@import "custom/cards/card-map.scss";
+@import "custom/cards/card-stats.scss";
+
+@import "custom/responsive.scss";
+
