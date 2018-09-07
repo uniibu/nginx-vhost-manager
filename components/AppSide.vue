@@ -31,9 +31,10 @@
           </nuxt-link>
         </li>
       </ul>
+
       <ul class="nav sticky-bottom">
         <li>
-          <a class="btn btn-default btn-sm">Restart NGINX</a>
+          <a class="btn btn-info btn-sm">Restart NGINX</a>
         </li>
       </ul>
     </div>
