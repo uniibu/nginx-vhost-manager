@@ -6,4 +6,4 @@ yarn-error.log
 test/
 test.js
 package-lock.json
-.nuxt/*
+.nuxt

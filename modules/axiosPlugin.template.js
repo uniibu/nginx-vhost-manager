@@ -42,11 +42,7 @@ for (const method of ['request', 'delete', 'get', 'head', 'options', 'put', 'pat
 }
 export default (ctx, inject) => {
   const axiosOpts = { baseURL: '<%= options.baseURL %>' };
-  <% if (options.httpsAgent) { %>
-  axiosOpts.httpsAgent = new require('https').Agent({  
-    rejectUnauthorized: false
-  });
-  <% } %>
+
   let axios = new NuxtAxios(axiosOpts);
   <% if (options.headers) { %>
   <% for(var k of options.headers) { %>

@@ -5,12 +5,12 @@
         <nav class="footer-nav">
           <ul>
             <li>
-              Copyright &copy; {{ (new Date()).getFullYear() }}
+              Made with ❤ under MIT License by
             </li>
             <li>
               <a 
-                href="//www.bitsler.com" 
-                target="_blank">Bitsler.com</a>
+                href="https://github.com/uniibu" 
+                target="_blank">Unibtc</a>
             </li>
           </ul>
         </nav>

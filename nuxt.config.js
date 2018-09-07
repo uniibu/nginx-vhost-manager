@@ -60,5 +60,10 @@ module.exports = {
   logger: {
     enabled: conf.isDev,
     colors: conf.isDev
-  }
+  },
+  axios: {
+    host: conf.ipHost,
+    prefix: cong.prefix,
+    headers: [{ scope: 'post', name: 'Content-Type', value: 'application/json' }]
+  },
 };
