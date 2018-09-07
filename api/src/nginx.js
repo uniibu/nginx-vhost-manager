@@ -26,7 +26,7 @@ const delVhost = exports.delVhost = async fname => {
 };
 exports.checkConfig = async (fname) => {
   try {
-    await fs.symlink(resolve('sites-available', fname), resolve('sites-enabled/'));
+    await fs.symlink(resolve('sites-available', fname), `${resolve('sites-enabled')}/`);
     await execa.shell('nginx -t');
     return true;
   } catch (e) {
@@ -39,7 +39,7 @@ exports.backVhost = fname => fs.copy(resolve('sites-available', fname), resolve(
 exports.delBackVhost = fname => fs.remove(resolve('sites-available', `${fname}.bak`));
 exports.restoreBackVhost = async fname => {
   await fs.copy(resolve('sites-available', `${fname}.bak`), resolve('sites-available', fname));
-  await fs.symlink(resolve('sites-available', fname), resolve('sites-enabled/'));
+  await fs.symlink(resolve('sites-available', fname), `${resolve('sites-enabled/')}/`);
 };
 exports.statusNginx = () => fs.existsSync('/var/run/nginx.pid');
 exports.restartNginx = async () => {
