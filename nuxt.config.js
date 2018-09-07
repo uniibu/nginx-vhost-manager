@@ -63,7 +63,7 @@ module.exports = {
   },
   axios: {
     host: conf.ipHost,
-    prefix: cong.prefix,
+    prefix: conf.prefix,
     headers: [{ scope: 'post', name: 'Content-Type', value: 'application/json' }]
   },
 };
