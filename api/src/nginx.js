@@ -5,6 +5,7 @@ const Beautify = require('nginxbeautify');
 const nginxFormat = new Beautify({ tabs: 0, spaces: 4 });
 const execa = require('execa');
 const resolve = (...p) => path.resolve(nginxDir, ...p);
+const sudoCmd = command => execa.shell(`sudo ${command}`);
 exports.getSites = async () => {
   try {
     const availableSites = await fs.readdir(resolve('sites-available'));
@@ -26,8 +27,8 @@ const delVhost = exports.delVhost = async fname => {
 };
 exports.checkConfig = async (fname) => {
   try {
-    await execa.shell(`ln -s ${resolve('sites-available', fname)} ${resolve('sites-enabled/')}`);
-    await execa.shell('nginx -t');
+    await sudoCmd(`ln -s ${resolve('sites-available', fname)} ${resolve('sites-enabled/')}`);
+    await sudoCmd('nginx -t');
     return true;
   } catch (e) {
     await delVhost(fname);
@@ -38,12 +39,29 @@ exports.backVhost = fname => fs.copy(resolve('sites-available', fname), resolve(
 exports.delBackVhost = fname => fs.remove(resolve('sites-available', `${fname}.bak`));
 exports.restoreBackVhost = async fname => {
   await fs.copy(resolve('sites-available', `${fname}.bak`), resolve('sites-available', fname));
-  await execa.shell(`ln -s ${resolve('sites-available', fname)} ${resolve('sites-enabled/')}`);
+  await sudoCmd(`ln -s ${resolve('sites-available', fname)} ${resolve('sites-enabled/')}`);
 };
+exports.statusNginx = () => fs.existsSync('/var/run/nginx.pid');
 exports.restartNginx = async () => {
   try {
-    await execa.shell('service nginx restart');
+    await sudoCmd('nginx -s reload');
     return true;
+  } catch (e) {
+    return false;
+  }
+};
+exports.startNginx = async () => {
+  try {
+    await sudoCmd('nginx');
+    return true;
+  } catch (e) {
+    return false;
+  }
+};
+exports.getVhost = async (fname) => {
+  try {
+    const v = await fs.readFile(resolve('sites-available', fname), 'utf8');
+    return v;
   } catch (e) {
     return false;
   }

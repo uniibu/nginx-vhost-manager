@@ -3,8 +3,9 @@
 
 ## Requirements
 - nodejs v8+
+- PM2 Module (optional but recommended) `npm install pm2 -g`
 - nginx installed and using default vhost pattern (sites-available and sites-enabled)
-- must run as root or sudo user
+- must have root/sudo access
 
 ## Installation
 
@@ -13,12 +14,17 @@ Clone this repository
 git clone https://github.com/uniibu/nginx-vhost-manager.git && cd nginx-vhost-manager
 ```
 
-Install dependencies for both api and gui
+Install dependencies
 ```bash
-bash ./install.sh
+yarn install # or npm install
 ```
 
-Create a .env file on api folder with following: (change each values to your own preference)
+Run setup script to fix permissions(only run this one time)
+```bash
+sudo bash ./setup.sh
+```
+
+Create a .env file with following: (change each values to your own preference)
 ```bash
 PORT=8081
 TRUST_PROXY=true
@@ -27,7 +33,12 @@ PREFIX=api
 PASSWORD=youradminpassword
 ```
 
-Run with PM2 as sudo/root user
+Build the gui files (onle done once)
 ```bash
-sudo pm2 start
+yarn build
+```
+
+Run with PM2 
+```bash
+yarn start
 ```

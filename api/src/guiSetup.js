@@ -1,7 +1,7 @@
 const nginx = require('./nginx');
 const guiVhost = 'nvmanager';
 const path = require('path');
-const distDir = path.resolve(__dirname, '../../gui/dist');
+const distDir = path.resolve(__dirname, '../../dist');
 const guiConfig = `server {
         listen 8080;
 	      listen [::]:8080;
@@ -23,6 +23,11 @@ const guiConfig = `server {
         }
 }`;
 module.exports = async () => {
+  if (!nginx.statusNginx()) {
+    const n = await nginx.startNginx();
+    if (!n) throw new Error('Failed to start nginx');
+    else console.log('Nginx started...');
+  }
   if (nginx.configExist(guiVhost)) {
     return;
   }

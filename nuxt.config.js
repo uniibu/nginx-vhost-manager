@@ -1,5 +1,7 @@
-process.env.NODE_ENV = process.env.NODE_ENV || 'production'; 
+process.env.NODE_ENV = process.env.NODE_ENV || 'production';
 require('dotenv').config();
+delete process.env.PASSWORD;
+delete process.env.SECRET;
 const conf = require('./config');
 /* Check other configs on the config folder */
 module.exports = {
@@ -59,4 +61,4 @@ module.exports = {
     enabled: conf.isDev,
     colors: conf.isDev
   }
-};  
+};

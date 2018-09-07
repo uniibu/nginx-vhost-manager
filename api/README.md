@@ -1,2 +1,1 @@
-# nv-api
-      Nginx Vhost Manager's API
+# Nginx Vhost Manager's API

@@ -1,15 +1,12 @@
 const fs = require('fs-extra');
-if (!fs.existsSync('./.env')) {
+const path = require('path');
+if (!fs.existsSync('../.env')) {
   console.error('The environment file .env is missing, please check README for instructions');
   process.exit();
 }
-require('dotenv').config();
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 if (!fs.existsSync('/etc/nginx') || !fs.existsSync('/etc/nginx/sites-available')) {
   console.error('Directory /etc/nginx or /etc/nginx/sites-available was not found.');
-  process.exit();
-}
-if (process.getuid() !== 0) {
-  console.error('Must be ran as sudo/root user');
   process.exit();
 }
 require('./src/guiSetup')().then(() => {

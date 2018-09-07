@@ -37,9 +37,18 @@ module.exports = router => {
     await nginx.delBackVhost(ctx.vals.name);
     ctx.ok();
   });
+  router.post('/view', async ctx => {
+    ctx.validateBody('name').required('Missing name').isString();
+    const v = await nginx.getVhost(ctx.vals.name);
+    if (!v) {
+      return ctx.fail('Vhost name not found');
+    }
+    ctx.ok({ name: ctx.vals.name, config: v });
+  });
   router.post('/del', async ctx => {
     ctx.validateBody('name').required('Missing name').isString();
     await nginx.delVhost(ctx.vals.name);
+    await nginx.restartNginx();
     ctx.ok();
   });
   router.post('/restart', async ctx => {
