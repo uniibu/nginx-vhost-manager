@@ -9,6 +9,10 @@ if (!fs.existsSync('/etc/nginx') || !fs.existsSync('/etc/nginx/sites-available')
   console.error('Directory /etc/nginx or /etc/nginx/sites-available was not found.');
   process.exit();
 }
+if (process.getuid() !== 0) {
+  console.error('Must be ran with sudo or as root user');
+  process.exit();
+}
 require('./src/guiSetup')().then(() => {
   const server = require('./src/app');
   server.listen(server.port, () => {
