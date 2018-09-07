@@ -34,7 +34,7 @@
 
       <ul class="nav sticky-bottom">
         <li>
-          <a class="btn btn-info btn-sm">Restart NGINX</a>
+          <button class="btn btn-info btn-sm">Restart NGINX</button>
         </li>
       </ul>
     </div>
