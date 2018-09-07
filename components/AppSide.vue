@@ -9,7 +9,7 @@
         class="simple-text logo-normal">
         <div class="logo-image-small">
           <img
-            src="img/logonginx.png"
+            src="/img/logonginx.png"
             alt="Nginx Vhost">
         </div>
       </a>
@@ -31,6 +31,11 @@
           </nuxt-link>
         </li>
       </ul>
+      <ul class="nav sticky-bottom">
+        <li>
+          <a class="btn btn-default btn-sm">Restart NGINX</a>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -39,7 +44,7 @@ export default{
   data() {
     return {
       items: [
-        { name: 'Nginx', path: '/', icon: 'nc-globe' }
+        { name: 'Dashboard', path: 'dashboard', icon: 'nc-globe' }
       ]      
     };
   },

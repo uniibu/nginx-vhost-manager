@@ -35,6 +35,13 @@
         :class="rClass"
         :style="rHeight"
         class="navbar-collapse justify-content-end">
+        <a 
+          href="#"
+          class="btn btn-default btn-sm"
+          @click="logout">
+          <i class="nc-icon nc-button-power"/>
+          <span>Logout</span>
+        </a>
         <slot/>
       </div>
     </div>
