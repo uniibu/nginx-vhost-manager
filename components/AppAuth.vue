@@ -7,7 +7,7 @@
             <div class="card-body">
               <form>
                 <div class="form-group">
-                  <label for="InputPassword1">Password</label>
+                  <label for="InputPassword1">Login</label>
                   <input 
                     id="InputPassword" 
                     type="password" 
@@ -23,7 +23,6 @@
         </div>
       </div>
     </div>
-   
   </div>
 </template>
 
