@@ -1,11 +1,12 @@
 <template>
-  <app-main/>
+  <app-auth/>
 </template>
 <script>
-import AppMain from '~/components/AppMain.vue';
+import AppAuth from '~/components/AppAuth.vue';
 export default {
   components: {
-    AppMain     
-  }
+    AppAuth,
+  },
+  layout: 'loginPage'
 };
 </script>

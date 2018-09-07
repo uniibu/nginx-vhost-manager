@@ -39,7 +39,7 @@ export default{
   data() {
     return {
       items: [
-        { name: 'Nginx', path: '/', icon: 'nc-ruler-pencil' }
+        { name: 'Nginx', path: '/', icon: 'nc-globe' }
       ]      
     };
   },

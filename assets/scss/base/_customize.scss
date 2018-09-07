@@ -65,6 +65,19 @@ body
   }
 }
 
+
+.LoginWrapper {
+  background: #35495e;
+  color: #333333;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-top: 19.38px;
+  margin: auto;
+} 
+
 .page-enter-active, .page-leave-active
 {
   transition: opacity .5s
