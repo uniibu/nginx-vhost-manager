@@ -4,6 +4,7 @@ delete process.env.PASSWORD;
 delete process.env.SECRET;
 const conf = require('./config');
 /* Check other configs on the config folder */
+console.log(conf.ipHost);
 module.exports = {
   mode: conf.mode,
   head: conf.head,
@@ -12,6 +13,9 @@ module.exports = {
   plugins: [{ src: '~plugins/nuxt-codemirror-plugin.js', ssr: false }],
   loading: { color: '#3B8070', height: '5px' },
   dev: conf.isDev,
+  env: {
+    IPHOST: conf.ipHost
+  },
   build: {
     extractCSS: process.env.EXTRACT == 'true',
     filenames: conf.isDev ? {} : {
@@ -60,10 +64,5 @@ module.exports = {
   logger: {
     enabled: conf.isDev,
     colors: conf.isDev
-  },
-  axios: {
-    host: conf.ipHost,
-    prefix: conf.prefix,
-    headers: [{ scope: 'post', name: 'Content-Type', value: 'application/json' }]
-  },
+  }
 };

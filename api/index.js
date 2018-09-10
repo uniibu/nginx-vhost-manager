@@ -13,12 +13,21 @@ if (process.getuid() !== 0) {
   console.error('Must be ran with sudo or as root user');
   process.exit();
 }
-require('./src/guiSetup')().then(() => {
-  const server = require('./src/app');
-  server.listen(server.port, () => {
-    console.log('Nginx Vhost Manager is running on port 8080');
+
+function start(cb) {
+  require('./src/guiSetup')().then(() => {
+    const server = require('./src/app');
+    server.listen(server.port, () => {
+      console.log('Nginx Vhost Manager is running on port 8080');
+      cb && cb();
+    });
+  }).catch(e => {
+    console.error(e);
+    process.exit();
   });
-}).catch(e => {
-  console.error(e);
-  process.exit();
-});
+}
+if (require.main === module) {
+  start();
+} else {
+  module.exports = start;
+}

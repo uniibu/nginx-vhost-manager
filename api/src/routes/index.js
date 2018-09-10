@@ -6,6 +6,6 @@ const jwt = require('koa-jwt');
 // public
 require('./public')(router);
 // private
-router.use(jwt({ secret: SECRET, debug: true, cookie: 'token' }));
+router.use(jwt({ secret: SECRET }));
 require('./private')(router);
 module.exports = router;

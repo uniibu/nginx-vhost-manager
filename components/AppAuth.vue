@@ -5,12 +5,16 @@
         <div class="col-md-4">
           <div class="card">
             <div class="card-body">
-              <form>
+              <form @submit.prevent="login">
+                <p 
+                  v-if="loginError" 
+                  class="error">{{ loginError }}</p>
                 <div class="form-group">
                   <label for="InputPassword1">Login</label>
                   <input 
                     id="InputPassword" 
-                    type="password" 
+                    v-model="loginPassword"
+                    type="password"
                     class="form-control" 
                     placeholder="Password">
                 </div>
@@ -25,4 +29,28 @@
     </div>
   </div>
 </template>
-
+<script>
+export default{
+  data() {
+    return {
+      loginPassword: '',
+      loginError: null      
+    };
+  },
+  methods: {
+    async login () {
+      try{
+        
+        await this.$store.dispatch('login', {
+          password: this.loginPassword
+        });
+        console.log('test');
+        this.loginPassword = '';
+        this.loginError = null;    
+      }catch(e){
+        this.formError = e.message;
+      }
+    }
+  }
+};
+</script>

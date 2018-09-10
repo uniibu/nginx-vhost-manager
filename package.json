@@ -37,6 +37,7 @@
     "eslint-friendly-formatter": "^4.0.1",
     "eslint-loader": "^2.0.0",
     "eslint-plugin-vue": "^4.5.0",
+    "localtunnel": "^1.9.1",
     "node-sass": "^4.9.0",
     "nodevl": "^1.0.2",
     "responsive-loader": "^1.1.0",
@@ -44,7 +45,6 @@
     "sharp": "^0.20.5"
   },
   "dependencies": {
-    "axios": "^0.18.0",
     "bootstrap-vue": "^2.0.0-rc.11",
     "dotenv": "^6.0.0",
     "envalid": "^4.1.4",

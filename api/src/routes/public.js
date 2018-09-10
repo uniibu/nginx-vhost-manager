@@ -13,9 +13,9 @@ module.exports = router => {
       retryCache.set(ctx.ip, retries);
       return ctx.fail('Invalid password');
     }
-    ctx.cookies.set('token', jwt.sign({ admin: true }, SECRET, { expiresIn: '1h' }));
+    const token = jwt.sign({ admin: true }, SECRET, { expiresIn: '1h' });
     retryCache.del(ctx.ip);
-    ctx.ok();
+    ctx.ok({ token });
   });
   router.post('/logout', ctx => {
     ctx.cookies.set('token', null);

@@ -12,7 +12,7 @@ function getIPAddress() {
 module.exports = {
   isDev: process.env.NODE_ENV === 'development',
   mode: 'spa',
-  ipHost: getIPAddress(),
+  ipHost: process.env.APIHOST || `http://${getIPAddress()}:${process.env.PORT || 8080}`,
   prefix: process.env.PREFIX || 'api',
   head: {
     htmlAttrs: {
@@ -31,6 +31,6 @@ module.exports = {
   },
   css: ['codemirror/lib/codemirror.css', '~/assets/scss/style.scss'],
   modules: [
-    ['bootstrap-vue/nuxt', { css: false }], '~/modules/axiosModule'
+    ['bootstrap-vue/nuxt', { css: false }]
   ]
 };
