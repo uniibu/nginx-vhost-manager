@@ -28,7 +28,7 @@ body
       > a:not([data-toggle="collapse"]),
       > [data-toggle="collapse"] + div .nav li {
         &:before{
-          border-right: 17px solid $medium-gray;
+          border-right: 17px solid #f8f9fa;
           border-top: 17px solid transparent;
           border-bottom: 17px solid transparent;
           content: "";
@@ -41,7 +41,7 @@ body
         }
 
         &:after{
-          border-right: 17px solid $default-body-bg;
+          border-right: 17px solid #f8f9fa;
           border-top: 17px solid transparent;
           border-bottom: 17px solid transparent;
           content: "";
