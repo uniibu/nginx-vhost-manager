@@ -27,6 +27,7 @@ const fetchJson = async (method = 'get', url, body, token) => {
 const createStore = () => new Vuex.Store({
   state: {
     auth: null,
+    code: ''
   },
   mutations: {
     SET_USER(state, auth) {
@@ -34,6 +35,10 @@ const createStore = () => new Vuex.Store({
     },
     CLEAR_USER(state){
       state.auth = null;
+      state.code = '';
+    },
+    CHANGE_CODE(state, code){
+      state.code = code;
     }
   },
   actions: {
@@ -55,7 +60,23 @@ const createStore = () => new Vuex.Store({
     async token({ state }){
       const token = state.auth.token || '';
       await fetchJson('get', '/api/token', {}, token );
+    },
+    async getvhosts({ state }){
+      const token = state.auth.token || '';
+      const resp = await fetchJson('get', '/api/sites', {}, token);
+      return resp.data;
+    },
+    async getsite({ commit, state }, name){
+      const token = state.auth.token || '';
+      const resp = await fetchJson('post', '/api/view', { name: name }, token);
+      commit('CHANGE_CODE', resp.data.config);
+    },
+    async nginxrestart({ state }){
+      const token = state.auth.token || '';
+      await fetchJson('post', '/api/restart', {}, token);
+
     }
+
   }
 });
 export default createStore;

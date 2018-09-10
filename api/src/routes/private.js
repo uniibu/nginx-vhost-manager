@@ -43,7 +43,7 @@ module.exports = router => {
     if (!v) {
       return ctx.fail('Vhost name not found');
     }
-    ctx.ok({ name: ctx.vals.name, config: v });
+    ctx.ok({ name: ctx.vals.name, config: nginx.format(v) });
   });
   router.post('/del', async ctx => {
     ctx.validateBody('name').required('Missing name').isString();

@@ -19,16 +19,15 @@
       <ul class="nav">
         <li
           v-for="(item, index) in items"
-          :class="isActive(item.name)"
           :key="index">
-          <nuxt-link
-            :to="{path: item.path, query: item.query}"
-            exact>
+          <a
+            href="#"
+            @click="getSite(item.site)">
             <i
               :class="item.icon"
               class="nc-icon"/>
             {{ item.name }}
-          </nuxt-link>
+          </a>
         </li>
         <ul class="nav">
           <li 
@@ -58,7 +57,9 @@
 
       <ul class="nav sticky-bottom">
         <li>
-          <button class="btn btn-info btn-sm">Restart NGINX</button>
+          <button 
+            class="btn btn-info btn-sm" 
+            @click="nginxRestart">Restart NGINX</button>
         </li>
       </ul>
     </div>
@@ -68,15 +69,30 @@
 export default{
   data() {
     return {
-      items: [
-        { name: 'dashboard', path: '/dashboard', icon: 'nc-globe' }
-      ],
+      items: [],
       model: {
         children: [{ name: 'dashboard', path: '/dashboard', icon: 'nc-globe' }]
       }
     };
   },
+  mounted(){
+    this.getVhosts();
+  },
   methods: {
+    getVhosts(){
+      this.$store.dispatch('getvhosts').then(({ sites }) => {
+        this.items = [];
+        for(const [k, v] of Object.entries(sites)){
+          this.items.push({ name: k, icon: v == true ? 'nc-globe':'nc-alert-circle-i', site: k });
+        }
+      });
+    },
+    getSite(name){
+      this.$store.dispatch('getsite', name);
+    },
+    nginxRestart(){
+      this.$store.dispatch('nginxrestart');
+    },
     isActive(name){
       return this.$route.name == name ? 'active' : '';
     },
