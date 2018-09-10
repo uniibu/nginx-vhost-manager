@@ -172,7 +172,7 @@ server {
   },
   methods: {
     onCmReady(cm) {
-      console.log('the editor is readied!', cm);
+      console.log('Ready', cm);
     },
     onCmCursorActivity() {
       return this.code;

@@ -19,7 +19,7 @@
       <ul class="nav">
         <li
           v-for="(item, index) in items"
-          :class="isActive(item.path)"
+          :class="isActive(item.name)"
           :key="index">
           <nuxt-link
             :to="{path: item.path, query: item.query}"
@@ -29,6 +29,30 @@
               class="nc-icon"/>
             {{ item.name }}
           </nuxt-link>
+        </li>
+        <ul class="nav">
+          <li 
+            v-for="(model, index) in model.children"
+            :class="isActive(model.name)"
+            :key="index"
+            class="item">
+            <a
+              :href="model.path"
+              class="nuxt-link-exact-active nuxt-link-active">
+              <i 
+                :class="model.icon" 
+                class="nc-icon"/>
+              {{ model.name }}
+            </a>
+          </li>
+        </ul>
+        <li class="add">
+          <a 
+            href="#"
+            @click="addChild">
+            <i class="nc-icon nc-simple-add"/>
+            ADD
+          </a>
         </li>
       </ul>
 
@@ -45,14 +69,24 @@ export default{
   data() {
     return {
       items: [
-        { name: 'Dashboard', path: 'dashboard', icon: 'nc-globe' }
-      ]      
+        { name: 'dashboard', path: '/dashboard', icon: 'nc-globe' }
+      ],
+      model: {
+        children: [{ name: 'dashboard', path: '/dashboard', icon: 'nc-globe' }]
+      }
     };
   },
   methods: {
     isActive(name){
       return this.$route.name == name ? 'active' : '';
     },
+    addChild(){
+      this.model.children.push({
+        name: 'new nginx',
+        icon: 'nc-bullet-list-67',
+        path: '#'
+      });
+    }
   }
 };
 </script>
