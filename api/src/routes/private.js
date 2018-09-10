@@ -58,4 +58,7 @@ module.exports = router => {
     }
     ctx.ok();
   });
+  router.get('/token', ctx => {
+    ctx.ok();
+  });
 };

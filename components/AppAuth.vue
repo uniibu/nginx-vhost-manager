@@ -44,7 +44,7 @@ export default{
         await this.$store.dispatch('login', {
           password: this.loginPassword
         });
-        console.log('test');
+        this.$router.push('/dashboard');
         this.loginPassword = '';
         this.loginError = null;    
       }catch(e){

@@ -10,7 +10,7 @@ module.exports = {
   head: conf.head,
   css: conf.css,
   modules: conf.modules,
-  plugins: [{ src: '~plugins/nuxt-codemirror-plugin.js', ssr: false }],
+  plugins: [{ src: '~plugins/nuxt-codemirror-plugin.js', ssr: false }, { src: '~/plugins/localstorage.js', ssr: false }],
   loading: { color: '#3B8070', height: '5px' },
   dev: conf.isDev,
   env: {

@@ -118,6 +118,10 @@ export default {
         this.toggleClass(el, 'toggled');
         this.lStatus = false;
       }, 580);
+    },
+    logout(){
+      this.$store.dispatch('logout');
+      this.$router.push('/');
     }
   }
 };

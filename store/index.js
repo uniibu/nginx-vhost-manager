@@ -1,19 +1,28 @@
 import Vuex from 'vuex';
 const fetchJson = async (method = 'get', url, body, token) => {
-  url = `${process.env.IPHOST}${url}`;
-  const fetchOpts = {
-    method,
-  };
-  if (method == 'post') {
-    fetchOpts.headers = { 'Content-Type': 'text/plain' };
-    if (body) fetchOpts.body = JSON.stringify(body);
+  try{
+    url = `${process.env.IPHOST}${url}`;
+    const fetchOpts = {
+      method,
+    };
+    if (method == 'post') {
+      fetchOpts.headers = { 'Content-Type': 'text/plain' };
+      if (body) fetchOpts.body = JSON.stringify(body);
+    }
+    if (token) {
+      fetchOpts.headers = { 'Authorization': `Bearer ${token}` };
+    }
+    const response = await fetch(url, fetchOpts);
+    const statuscode = response.status;
+    const json = await response.json();
+    if(statuscode !== 200 || json.success == false){
+      return Promise.reject(json.error);
+    }
+    return json;
+  }catch(e){
+    console.log(e);
+    Promise.reject(e);
   }
-  if (token) {
-    fetchOpts.headers = { 'Authorization': `Bearer ${token}` };
-  }
-  const response = await fetch(url, fetchOpts);
-  const json = await response.json();
-  return json;
 };
 const createStore = () => new Vuex.Store({
   state: {
@@ -22,6 +31,9 @@ const createStore = () => new Vuex.Store({
   mutations: {
     SET_USER(state, auth) {
       state.auth = auth;
+    },
+    CLEAR_USER(state){
+      state.auth = null;
     }
   },
   actions: {
@@ -38,8 +50,11 @@ const createStore = () => new Vuex.Store({
       }
     },
     async logout({ commit }) {
-      await fetchJson('post', '/api/logout');
-      commit('SET_USER', null);
+      commit('CLEAR_USER');
+    },
+    async token({ state }){
+      const token = state.auth.token || '';
+      await fetchJson('get', '/api/token', {}, token );
     }
   }
 });

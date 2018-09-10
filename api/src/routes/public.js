@@ -17,8 +17,5 @@ module.exports = router => {
     retryCache.del(ctx.ip);
     ctx.ok({ token });
   });
-  router.post('/logout', ctx => {
-    ctx.cookies.set('token', null);
-    ctx.ok();
-  });
+
 };

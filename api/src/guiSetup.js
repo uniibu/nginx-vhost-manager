@@ -7,11 +7,11 @@ const guiConfig = `server {
 	      listen [::]:8080;
 
         root ${distDir};
+        port_in_redirect off;
         index index.html;
-
+        
         charset utf-8;
         autoindex off;
-
         location ~* \\.(css|js|gif|jpeg|jpg|png|otf|eot|svg|ttf|woff|woff2)$ {
             expires 365d;
             add_header Cache-Control "public, must-revalidate, proxy-revalidate";
@@ -19,7 +19,7 @@ const guiConfig = `server {
         }
 
         location / {
-          try_files $uri $uri/ /index.html;
+          try_files $uri $uri/ =404;
         }
 }`;
 module.exports = async () => {
