@@ -1,5 +1,27 @@
 <template>
   <div class="col-md-12">
+    <div>
+      <button class="btn btn-sm btn-info">UPDATE EDITED NGINX CONFIG</button>
+      <button class="btn btn-sm btn-danger">DELETE SELECTED NGINX CONFIG</button>
+      <button 
+        class="btn btn-sm btn-default" 
+        @click="newNginx">NEW NGINX CONFIG</button>
+      <button class="btn btn-sm btn-success">SAVE NEW NGINX CONFIG</button>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="input-group no-border mx-auto">
+          <input
+            v-model="$store.state.confname"
+            type="text" 
+            placeholder="Nginx Config Name..." 
+            class="form-control"
+            @change="onConfNameChange">
+        </div>
+      </div>
+    </div>
+
     <div class="cm-topbar"><div class="cm-topone"/> <div class="cm-toptwo"/> <div class="cm-topthree"/></div>
     <codemirror 
       v-model="$store.state.code"
@@ -12,7 +34,6 @@
 <script>
 export default {
   data() {
-
     return {
       cmOption: {
         tabSize: 4,
@@ -39,10 +60,17 @@ export default {
     onCmReady(cm) {
       console.log('Ready', cm);
     },
-
     onCmChange(newCm) {
       console.log('new code', newCm);
       this.$store.commit('CHANGE_CODE', newCm);
+    },
+    onConfNameChange(newConfName) {
+      console.log('new config name', newConfName);
+      this.$store.commit('CHANGE_CONFNAME', newConfName);
+    },
+    newNginx(newNginx) {
+      console.log('neweditor launched !', newNginx);
+      this.$store.dispatch('neweditor');
     }
   }
 };
