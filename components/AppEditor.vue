@@ -65,8 +65,8 @@ export default {
       this.$store.commit('CHANGE_CODE', newCm);
     },
     onConfNameChange(newConfName) {
-      console.log('new config name', newConfName);
-      this.$store.commit('CHANGE_CONFNAME', newConfName);
+      console.log('new config name', newConfName.target.value);
+      this.$store.commit('CHANGE_CONFNAME', newConfName.target.value);
     },
     newNginx(newNginx) {
       console.log('neweditor launched !', newNginx);
