@@ -27,7 +27,8 @@ const fetchJson = async (method = 'get', url, body, token) => {
 const createStore = () => new Vuex.Store({
   state: {
     auth: null,
-    code: ''
+    code: '',
+    confname: ''
   },
   mutations: {
     SET_USER(state, auth) {
@@ -36,9 +37,17 @@ const createStore = () => new Vuex.Store({
     CLEAR_USER(state){
       state.auth = null;
       state.code = '';
+      state.confname = '';
     },
     CHANGE_CODE(state, code){
       state.code = code;
+    },
+    CHANGE_CONFNAME(state, confname){
+      state.confname = confname;
+    },
+    CLEAR_EDITOR(state){
+      state.code = '';
+      state.confname = '';
     }
   },
   actions: {
@@ -57,6 +66,9 @@ const createStore = () => new Vuex.Store({
     async logout({ commit }) {
       commit('CLEAR_USER');
     },
+    async neweditor({ commit }) {
+      commit('CLEAR_EDITOR');
+    },
     async token({ state }){
       const token = state.auth.token || '';
       await fetchJson('get', '/api/token', {}, token );
@@ -68,8 +80,9 @@ const createStore = () => new Vuex.Store({
     },
     async getsite({ commit, state }, name){
       const token = state.auth.token || '';
-      const resp = await fetchJson('post', '/api/view', { name: name }, token);
+      const resp = await fetchJson('post', '/api/view', { name }, token);
       commit('CHANGE_CODE', resp.data.config);
+      commit('CHANGE_CONFNAME', resp.data.name);
     },
     async nginxrestart({ state }){
       const token = state.auth.token || '';
