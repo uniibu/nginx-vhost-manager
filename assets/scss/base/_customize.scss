@@ -76,10 +76,23 @@ body
 } 
 
 ul.nav.sticky-bottom {
-  position: absolute;
+  bottom: 0;
+  position: fixed;
   text-align: center;
-  bottom: 100px;
-  width: 100%;
+  width: 259px;
+  margin: 0;
+  padding: 8px 0;
+  background-color: #35495e;
+}
+
+ul.nav.sticky-bottom:before {
+  background-color: hsla(0,0%,100%,.5);
+  top: 0;
+  content: "";
+  height: 1px;
+  position: absolute;
+  right: 15px;
+  width: calc(100% - 30px);
 }
 
 .page-enter-active, .page-leave-active
