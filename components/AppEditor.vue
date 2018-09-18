@@ -1,14 +1,32 @@
 <template>
   <div class="col-md-12">
-    <div>
-      <button class="btn btn-sm btn-info">UPDATE EDITED NGINX CONFIG</button>
-      <button class="btn btn-sm btn-danger">DELETE SELECTED NGINX CONFIG</button>
-      <button 
-        class="btn btn-sm btn-default" 
-        @click="newNginx">NEW NGINX CONFIG</button>
-      <button class="btn btn-sm btn-success">SAVE NEW NGINX CONFIG</button>
+    <div 
+      v-if="$store.state.action == 'new' || $store.state.action == ''">
+      <a
+        href="#"
+        class="btn btn-success btn-sm"
+        @click="saveConfig">
+        <i class="tm-icon tm-save"/> 
+        <span>SAVE NGINX CONFIG</span>
+      </a>
     </div>
-
+    <div 
+      v-if="$store.state.action == 'edit'">
+      <a 
+        href="#"
+        class="btn btn-danger btn-sm"
+        @click="deleteConfig">
+        <i class="tm-icon tm-trash"/> 
+        <span>DELETE NGINX CONFIG</span>
+      </a>
+      <a 
+        href="#"
+        class="btn btn-default btn-sm"
+        @click="editConfig">
+        <i class="nc-icon nc-refresh-69"/> 
+        <span>UPDATE NGINX CONFIG</span>
+      </a>
+    </div>
     <div class="row">
       <div class="col-md-4">
         <div class="input-group no-border mx-auto">
@@ -65,12 +83,22 @@ export default {
       this.$store.commit('CHANGE_CODE', newCm);
     },
     onConfNameChange(newConfName) {
-      console.log('new config name', newConfName.target.value);
       this.$store.commit('CHANGE_CONFNAME', newConfName.target.value);
     },
-    newNginx(newNginx) {
-      console.log('neweditor launched !', newNginx);
-      this.$store.dispatch('neweditor');
+    saveConfig() {
+      this.$store.dispatch('saveconfig').then(() => {
+        this.$router.go();
+      });
+    },
+    deleteConfig() {
+      this.$store.dispatch('deleteconfig').then(() => {
+        this.$store.dispatch('neweditor');
+        this.$router.go();
+      });
+    },
+    editConfig() {
+      this.$store.dispatch('editconfig');
+      console.log('updated..!');
     }
   }
 };
