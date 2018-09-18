@@ -28,11 +28,15 @@ const createStore = () => new Vuex.Store({
   state: {
     auth: null,
     code: '',
-    confname: ''
+    confname: '',
+    action: ''
   },
   mutations: {
     SET_USER(state, auth) {
       state.auth = auth;
+    },
+    CHANGE_ACTION(state, action){
+      state.action = action;
     },
     CLEAR_USER(state){
       state.auth = null;
@@ -63,11 +67,12 @@ const createStore = () => new Vuex.Store({
         throw error;
       }
     },
-    async logout({ commit }) {
+    logout({ commit }) {
       commit('CLEAR_USER');
     },
-    async neweditor({ commit }) {
+    neweditor({ commit }) {
       commit('CLEAR_EDITOR');
+      commit('CHANGE_ACTION', 'new');
     },
     async token({ state }){
       const token = state.auth.token || '';
@@ -82,14 +87,27 @@ const createStore = () => new Vuex.Store({
       const token = state.auth.token || '';
       const resp = await fetchJson('post', '/api/view', { name }, token);
       commit('CHANGE_CODE', resp.data.config);
+      commit('CHANGE_ACTION', 'edit');
       commit('CHANGE_CONFNAME', resp.data.name);
+    },
+    async saveconfig({ state }){
+      const token = state.auth.token || '';
+      await fetchJson('post', '/api/new', { name: state.confname, config: state.code }, token);
+    },
+    async deleteconfig({ state }){
+      const token = state.auth.token || '';
+      await fetchJson('post', '/api/del', { name: state.confname }, token);
+    },
+    async editconfig({ state }){
+      const token = state.auth.token || '';
+      await fetchJson('post', '/api/edit', { name: state.confname, config: state.code }, token);
     },
     async nginxrestart({ state }){
       const token = state.auth.token || '';
       await fetchJson('post', '/api/restart', {}, token);
 
     }
-
   }
+
 });
 export default createStore;
