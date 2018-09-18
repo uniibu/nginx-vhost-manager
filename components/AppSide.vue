@@ -33,8 +33,13 @@
       <ul class="nav sticky-bottom">
         <li>
           <button 
-            class="btn btn-info btn-sm" 
-            @click="nginxRestart">Restart NGINX</button>
+            class="btn btn-sm btn-default" 
+            @click="newNginx">NEW NGINX CONFIG</button>
+        </li>
+        <li>
+          <button 
+            class="btn btn-sm btn-default" 
+            @click="nginxRestart">RESTART NGINX</button>
         </li>
       </ul>
     </div>
@@ -64,6 +69,9 @@ export default{
     },
     nginxRestart(){
       this.$store.dispatch('nginxrestart');
+    },
+    newNginx() {
+      this.$store.dispatch('neweditor');
     },
     isActive(name){
       return this.$route.name == name ? 'active' : '';
