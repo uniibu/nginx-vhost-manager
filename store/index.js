@@ -20,7 +20,6 @@ const fetchJson = async (method = 'get', url, body, token) => {
     }
     return json;
   }catch(e){
-    console.log(e);
     Promise.reject(e);
   }
 };
@@ -58,7 +57,6 @@ const createStore = () => new Vuex.Store({
     async login({ commit }, { password }) {
       try {
         const resp = await fetchJson('post', '/api/login', { password });
-        console.log(resp);
         commit('SET_USER', { token: resp.data.token });
       } catch (error) {
         if (error.response && error.response.status === 401) {
@@ -85,10 +83,11 @@ const createStore = () => new Vuex.Store({
     },
     async getsite({ commit, state }, name){
       const token = state.auth.token || '';
-      const resp = await fetchJson('post', '/api/view', { name }, token);
-      commit('CHANGE_CODE', resp.data.config);
+      const response = await fetchJson('post', '/api/view', { name }, token);
+      const v = response.data.name;
+      commit('CHANGE_CODE', response.data.config);
       commit('CHANGE_ACTION', 'edit');
-      commit('CHANGE_CONFNAME', resp.data.name);
+      commit('CHANGE_CONFNAME', v);
     },
     async saveconfig({ state }){
       const token = state.auth.token || '';
@@ -105,7 +104,6 @@ const createStore = () => new Vuex.Store({
     async nginxrestart({ state }){
       const token = state.auth.token || '';
       await fetchJson('post', '/api/restart', {}, token);
-
     }
   }
 
