@@ -31,6 +31,7 @@ module.exports = {
   },
   css: ['codemirror/lib/codemirror.css', '~/assets/scss/style.scss'],
   modules: [
-    ['bootstrap-vue/nuxt', { css: false }]
+    ['bootstrap-vue/nuxt', { css: false }], 
+    '@nuxtjs/toast',
   ]
 };
