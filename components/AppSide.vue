@@ -73,6 +73,7 @@ export default{
     },
     async nginxRestart(){
       try {
+        this.$toast.info('Restarting...');
         await this.$store.dispatch('nginxrestart');
         this.$toast.success('Nginx Restarted');
       } catch(e){
