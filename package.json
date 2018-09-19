@@ -45,6 +45,7 @@
     "sharp": "^0.20.5"
   },
   "dependencies": {
+    "@nuxtjs/toast": "^3.0.1",
     "bootstrap-vue": "^2.0.0-rc.11",
     "dotenv": "^6.0.0",
     "envalid": "^4.1.4",
