@@ -35,6 +35,7 @@
             type="text" 
             placeholder="Nginx Config Name..." 
             class="form-control"
+            required 
             @change="onConfNameChange">
         </div>
       </div>
@@ -79,26 +80,39 @@ export default {
       console.log('Ready', cm);
     },
     onCmChange(newCm) {
-      console.log('new code', newCm);
       this.$store.commit('CHANGE_CODE', newCm);
     },
     onConfNameChange(newConfName) {
       this.$store.commit('CHANGE_CONFNAME', newConfName.target.value);
     },
-    saveConfig() {
-      this.$store.dispatch('saveconfig').then(() => {
+    async saveConfig() {
+      try {
+        this.$toast.show('Saving ...');
+        await this.$store.dispatch('saveconfig');
+        this.$toast.success('Saved !');
         this.$router.go();
-      });
+      } catch(e){
+        this.$toast.error(e);
+      }
     },
-    deleteConfig() {
-      this.$store.dispatch('deleteconfig').then(() => {
+    async deleteConfig() {
+      try {
+        this.$toast.show('Deleting ...');
+        await this.$store.dispatch('deleteconfig');
         this.$store.dispatch('neweditor');
         this.$router.go();
-      });
+        this.$toast.success('Successfully Deleted !');
+      } catch(e){
+        this.$toast.error(e);
+      }
     },
-    editConfig() {
-      this.$store.dispatch('editconfig');
-      console.log('updated..!');
+    async editConfig() {
+      try {
+        await this.$store.dispatch('editconfig');
+        this.$toast.success('Successfully Edited !');
+      } catch(e){
+        this.$toast.error(e);
+      }
     }
   }
 };
