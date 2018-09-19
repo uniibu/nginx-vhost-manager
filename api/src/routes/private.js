@@ -5,7 +5,7 @@ module.exports = router => {
     ctx.ok({ sites });
   });
   router.post('/new', async ctx => {
-    ctx.validateBody('name').required('Missing name').isString();
+    ctx.validateBody('name').required('Missing name').isString().tap(n => n.toLowerCase());
     ctx.validateBody('config').required('Missing configuration').isString();
     const formatConfig = nginx.format(ctx.vals.config);
     if (nginx.configExist(ctx.vals.name)) {
@@ -19,7 +19,7 @@ module.exports = router => {
     ctx.ok();
   });
   router.post('/edit', async ctx => {
-    ctx.validateBody('name').required('Missing name').isString();
+    ctx.validateBody('name').required('Missing name').isString().tap(n => n.toLowerCase());
     ctx.validateBody('config').required('Missing configuration').isString();
     const formatConfig = nginx.format(ctx.vals.config);
     if (!nginx.configExist(ctx.vals.name)) {
@@ -38,15 +38,15 @@ module.exports = router => {
     ctx.ok();
   });
   router.post('/view', async ctx => {
-    ctx.validateBody('name').required('Missing name').isString();
+    ctx.validateBody('name').required('Missing name').isString().tap(n => n.toLowerCase());
     const v = await nginx.getVhost(ctx.vals.name);
-    if (!v) {
+    if (v === false) {
       return ctx.fail('Vhost name not found');
     }
     ctx.ok({ name: ctx.vals.name, config: nginx.format(v) });
   });
   router.post('/del', async ctx => {
-    ctx.validateBody('name').required('Missing name').isString();
+    ctx.validateBody('name').required('Missing name').isString().tap(n => n.toLowerCase());
     await nginx.delVhost(ctx.vals.name);
     await nginx.restartNginx();
     ctx.ok();
