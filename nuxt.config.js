@@ -61,6 +61,11 @@ module.exports = {
       }
     }
   },
+  toast: {
+    duration: 3000,
+    position: 'top-center',
+    singleton: true
+  },
   logger: {
     enabled: conf.isDev,
     colors: conf.isDev
