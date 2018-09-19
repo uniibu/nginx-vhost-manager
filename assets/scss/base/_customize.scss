@@ -95,6 +95,39 @@ ul.nav.sticky-bottom:before {
   width: calc(100% - 30px);
 }
 
+
+.heart {
+  animation: hearthing 1s ease infinite;
+  color: #dc3545;
+  font-size: 18px;
+}
+
+@keyframes hearthing {
+  0% {
+      transform: scale(.75)
+  }
+
+  20% {
+      transform: scale(1)
+  }
+
+  40% {
+      transform: scale(.75)
+  }
+
+  60% {
+      transform: scale(1)
+  }
+
+  80% {
+      transform: scale(.75)
+  }
+
+  to {
+      transform: scale(.75)
+  }
+}
+
 .page-enter-active, .page-leave-active
 {
   transition: opacity .5s
