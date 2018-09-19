@@ -71,19 +71,19 @@ $default-body-bg:                 #f4f3ef !default;
 
 $light-primary-color:        #13a5de !default;
 
-$primary-color:              #51cbce !default;
+$primary-color:              #007bff !default;
 $primary-states-color:       darken($primary-color, 10%) !default;
 
-$success-color:              #2dce89 !default;
+$success-color:              #28a745 !default;
 $success-states-color:       darken($success-color, 10%) !default;
 
-$info-color:                 #51bcda !default;
+$info-color:                 #17a2b8 !default;
 $info-states-color:          darken($info-color, 10%) !default;
 
-$warning-color:              #fbc658 !default;
+$warning-color:              #ffc107 !default;
 $warning-states-color:       darken($warning-color, 10%) !default;
 
-$danger-color:               #ef8157 !default;
+$danger-color:               #dc3545 !default;
 $danger-states-color:        darken($danger-color, 8%) !default;
 
 $link-disabled-color:        #666666 !default;
