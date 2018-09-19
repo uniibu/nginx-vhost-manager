@@ -6,9 +6,6 @@
           <div class="card">
             <div class="card-body">
               <form @submit.prevent="login">
-                <p 
-                  v-if="loginError" 
-                  class="error">{{ loginError }}</p>
                 <div class="form-group">
                   <label for="InputPassword1">Login</label>
                   <input 
@@ -38,17 +35,18 @@ export default{
     };
   },
   methods: {
-    async login () {
-      try{
-        
+    async login() {
+      try {
+        this.$toast.success('Signing in...');
         await this.$store.dispatch('login', {
           password: this.loginPassword
         });
+        this.$toast.success('Successfully authenticated !');
         this.$router.push('/dashboard');
         this.loginPassword = '';
         this.loginError = null;    
-      }catch(e){
-        this.formError = e.message;
+      } catch(e){
+        this.$toast.error(e);
       }
     }
   }
