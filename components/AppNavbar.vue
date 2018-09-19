@@ -8,6 +8,7 @@
           <button 
             type="button" 
             class="navbar-toggler"
+            aria-label="Toggle navigation"
             @click="toggleSidebar">
             <span class="navbar-toggler-bar bar1"/>
             <span class="navbar-toggler-bar bar2"/>
