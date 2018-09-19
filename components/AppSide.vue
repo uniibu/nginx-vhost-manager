@@ -60,18 +60,28 @@ export default{
       this.$store.dispatch('getvhosts').then(({ sites }) => {
         this.items = [];
         for(const [k, v] of Object.entries(sites)){
-          this.items.push({ name: k, icon: v == true ? 'nc-globe':'nc-alert-circle-i', site: k });
+          this.items.push({ name: k, icon: v == true ? 'nc-globe' : 'nc-alert-circle-i', site: k });
         }
       });
     },
-    getSite(name){
-      this.$store.dispatch('getsite', name);
+    async getSite(name){
+      try {
+        await this.$store.dispatch('getsite', name);
+      } catch(e){
+        this.$toast.error(e);
+      }
     },
-    nginxRestart(){
-      this.$store.dispatch('nginxrestart');
+    async nginxRestart(){
+      try {
+        await this.$store.dispatch('nginxrestart');
+        this.$toast.success('Nginx Restarted');
+      } catch(e){
+        this.$toast.error(e);
+      }
     },
     newNginx() {
       this.$store.dispatch('neweditor');
+      this.$toast.success('New Editor Config !');
     },
     isActive(name){
       return this.$route.name == name ? 'active' : '';
