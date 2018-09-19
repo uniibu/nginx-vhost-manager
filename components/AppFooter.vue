@@ -5,10 +5,11 @@
         <nav class="footer-nav">
           <ul>
             <li>
-              Made with ❤ under MIT License by
+              Made with <span class="tm-icon tm-heart heart"/> under MIT License by
             </li>
             <li>
-              <a 
+              <a
+                rel="noopener"
                 href="https://github.com/uniibu" 
                 target="_blank">Unibtc</a>
             </li>
