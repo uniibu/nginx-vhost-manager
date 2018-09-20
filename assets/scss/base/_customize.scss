@@ -17,6 +17,10 @@ body
   margin: 0;
 }
 
+.border-0 {
+  border: 0 !important;
+}
+
 .sidebar{
   .sidebar-wrapper{
     li.active{
@@ -68,7 +72,72 @@ body
   text-align: center;
   padding-top: 10%;
   margin: auto;
-} 
+}
+
+.LoginWrapper .container {
+  height: 100%;
+  padding-bottom: 0;
+  padding-top: 6rem;
+  position: relative;
+}
+
+.section-lg {
+  padding-bottom: 6rem;
+  padding-top: 6rem;
+}
+
+.form-control:focus {
+  &::-webkit-input-placeholder, &:-ms-input-placeholder, &::-ms-input-placeholder, &::placeholder {
+    color: #adb5bd;
+  }
+}
+
+.input-group {
+  -webkit-transition: all .15s ease;
+  border-radius: .25rem;
+  transition: all 0.15s ease;
+  .form-control:focus {
+    box-shadow: none;
+  }
+}
+
+.input-group-text {
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.input-group-alternative {
+  -webkit-box-shadow: 0 1px 3px rgba(50, 50, 93, 0.15), 0 1px 0 rgba(0, 0, 0, 0.02);
+  -webkit-transition: -webkit-box-shadow .15s ease;
+  border: 0;
+  box-shadow: 0 1px 3px rgba(50, 50, 93, 0.15), 0 1px 0 rgba(0, 0, 0, 0.02);
+  transition: box-shadow 0.15s ease;
+  .form-control, .input-group-text {
+    -webkit-box-shadow: none;
+    border: 0;
+    box-shadow: none;
+  }
+  .input-group-prepend .input-group-text {
+    padding: 10px;
+  }
+}
+
+@media (min-width: 992px) {
+.py-lg-5 {
+  padding-top: 3rem !important;
+}
+.px-lg-5 {
+  padding-right: 3rem !important;
+}
+.py-lg-5 {
+  padding-bottom: 3rem !important;
+}
+.px-lg-5 {
+  padding-left: 3rem !important;
+}
+.pt-lg-md {
+  padding-top: 4rem !important;
+}
+}
 
 ul.nav.sticky-bottom {
   bottom: 0;
