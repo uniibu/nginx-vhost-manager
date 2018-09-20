@@ -16,7 +16,7 @@
     </div>
 
     <div 
-      id="#style-3" 
+      id="style-3" 
       class="sidebar-wrapper">
       <ul class="nav">
         <li
