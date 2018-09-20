@@ -15,11 +15,15 @@
       </a>
     </div>
 
-    <div class="sidebar-wrapper">
+    <div 
+      id="#style-3" 
+      class="sidebar-wrapper">
       <ul class="nav">
         <li
           v-for="(item, index) in items"
-          :key="index">
+          :class="isActive(item.name)"
+          :key="index"
+          class="nav-item">
           <a
             href="#"
             @click="getSite(item.site)">
@@ -31,15 +35,23 @@
         </li>
       </ul>
       <ul class="nav sticky-bottom">
-        <li>
-          <button 
-            class="btn btn-sm btn-default" 
-            @click="newNginx">NEW NGINX CONFIG</button>
+        <li class="nav-item">
+          <a 
+            href="#" 
+            class="btn btn-link text-success"
+            @click="newNginx">
+            <i class="nc-icon nc-ruler-pencil text-success"/>
+            New Nginx Config
+          </a>
         </li>
-        <li>
-          <button 
-            class="btn btn-sm btn-default" 
-            @click="nginxRestart">RESTART NGINX</button>
+        <li class="nav-item">
+          <a 
+            href="#" 
+            class="btn btn-link text-success"
+            @click="nginxRestart">
+            <i class="nc-icon nc-spaceship text-success"/>
+            Restart Nginx
+          </a>
         </li>
       </ul>
     </div>
@@ -49,7 +61,7 @@
 export default{
   data() {
     return {
-      items: [],
+      items: []
     };
   },
   mounted(){
@@ -66,10 +78,14 @@ export default{
     },
     async getSite(name){
       try {
-        await this.$store.dispatch('getsite', name);
+        const vname = await this.$store.dispatch('getsite', name);
+        return vname;
       } catch(e){
         this.$toast.error(e);
       }
+    },
+    isActive(name){
+      return this.$store.state.configname == name ? 'active' : '';
     },
     async nginxRestart(){
       try {
@@ -83,10 +99,7 @@ export default{
     newNginx() {
       this.$store.dispatch('neweditor');
       this.$toast.success('New Editor Config !');
-    },
-    isActive(name){
-      return this.$route.name == name ? 'active' : '';
-    },
+    }
   }
 };
 </script>
