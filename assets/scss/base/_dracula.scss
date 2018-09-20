@@ -50,7 +50,7 @@
  
  .CodeMirror {
   font-size: 16px;
-  height: 80vh;
+  height: 65vh;
  }
  
  .CodeMirror div.CodeMirror-cursor {
@@ -67,7 +67,7 @@
  
  .cm-s-panda-syntax .cm-comment {
   font-style: italic;
-  color: #676b79;
+  color: #B1B8B9;
  }
  
  .cm-s-panda-syntax .cm-operator {
@@ -141,11 +141,7 @@
   background: #292a2b;
   border-right-color: rgba(255, 255, 255, 0.1);
  }
- 
- .cm-s-panda-syntax .CodeMirror-linenumber {
-  opacity: 0.6;
- }
- 
+
  .CodeMirror-wrap pre {
   padding-left: 10px;
  }
