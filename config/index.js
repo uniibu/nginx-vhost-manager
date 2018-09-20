@@ -21,12 +21,14 @@ module.exports = {
     title: 'Nginx-vhost',
     meta: [
       { charset: 'utf-8' },
-      { hid: 'viewport', name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' },
+      { name: 'msapplication-TileColor', content: '#da532c' },
       { hid: 'description', name: 'description', content: 'Nginx vhost manager' },
       { name: 'theme-color', content: '#ffffff' },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'manifest', href: '/img/site.webmanifest' }
     ]
   },
   css: ['codemirror/lib/codemirror.css', '~/assets/scss/style.scss'],
