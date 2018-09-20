@@ -27,6 +27,7 @@ const createStore = () => new Vuex.Store({
   state: {
     auth: null,
     code: '',
+    configname: '',
     confname: '',
     action: ''
   },
@@ -40,6 +41,7 @@ const createStore = () => new Vuex.Store({
     CLEAR_USER(state){
       state.auth = null;
       state.code = '';
+      state.configname = '';
       state.confname = '';
     },
     CHANGE_CODE(state, code){
@@ -48,9 +50,13 @@ const createStore = () => new Vuex.Store({
     CHANGE_CONFNAME(state, confname){
       state.confname = confname;
     },
+    NAME_CONFIGNAME(state, configname){
+      state.configname = configname;
+    },
     CLEAR_EDITOR(state){
       state.code = '';
       state.confname = '';
+      state.configname = '';
     }
   },
   actions: {
@@ -87,7 +93,9 @@ const createStore = () => new Vuex.Store({
       const v = response.data.name;
       commit('CHANGE_CODE', response.data.config);
       commit('CHANGE_ACTION', 'edit');
+      commit('NAME_CONFIGNAME', v);
       commit('CHANGE_CONFNAME', v);
+      return v;
     },
     async saveconfig({ state }){
       const token = state.auth.token || '';
