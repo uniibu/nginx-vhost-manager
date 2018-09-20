@@ -31,10 +31,19 @@
     <div class="row">
       <div class="col-md-4">
         <div class="input-group no-border mx-auto">
+          <div class="input-group-prepend">
+            <div 
+              id="inputGroup-icon" 
+              class="input-group-text">
+              <i class="nc-icon nc-globe-2"/>
+            </div>
+          </div>
           <input
             v-model="$store.state.confname"
             type="text" 
-            placeholder="Nginx Config Name..." 
+            placeholder="Nginx Config Name..."
+            aria-label="Nginx Config"
+            aria-describedby="inputGroup-icon"
             class="form-control"
             required 
             @change="onConfNameChange">
