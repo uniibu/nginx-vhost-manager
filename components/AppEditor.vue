@@ -7,24 +7,25 @@
         class="btn btn-success btn-sm"
         @click="saveConfig">
         <i class="tm-icon tm-save"/> 
-        <span>SAVE NGINX CONFIG</span>
+        <span>Save Nginx Config</span>
       </a>
     </div>
-    <div 
-      v-if="$store.state.action == 'edit'">
-      <a 
-        href="#"
-        class="btn btn-danger btn-sm"
-        @click="deleteConfig">
-        <i class="tm-icon tm-trash"/> 
-        <span>DELETE NGINX CONFIG</span>
-      </a>
+    <div
+      v-if="$store.state.action == 'edit'"
+      class="d-flex justify-content-between flex-wrap">
       <a 
         href="#"
         class="btn btn-default btn-sm"
         @click="editConfig">
         <i class="nc-icon nc-refresh-69"/> 
-        <span>UPDATE NGINX CONFIG</span>
+        <span>Update Nginx Config</span>
+      </a>
+      <a 
+        href="#"
+        class="btn btn-danger btn-sm"
+        @click="deleteConfig">
+        <i class="tm-icon tm-trash"/> 
+        <span>Delete Nginx Config</span>
       </a>
     </div>
     <div class="row">
@@ -87,9 +88,10 @@ export default {
     },
     async saveConfig() {
       try {
-        this.$toast.show('Saving ...');
+        this.$toast.info('Saving Config...');
         await this.$store.dispatch('saveconfig');
-        this.$toast.success('Saved !');
+        this.$store.dispatch('neweditor');
+        this.$toast.success('Successfully Saved !');
         this.$router.go();
       } catch(e){
         this.$toast.error(e);
@@ -97,7 +99,7 @@ export default {
     },
     async deleteConfig() {
       try {
-        this.$toast.show('Deleting ...');
+        this.$toast.info('Deleting Config...');
         await this.$store.dispatch('deleteconfig');
         this.$store.dispatch('neweditor');
         this.$router.go();
@@ -108,8 +110,9 @@ export default {
     },
     async editConfig() {
       try {
+        this.$toast.info('Updating Config...');
         await this.$store.dispatch('editconfig');
-        this.$toast.success('Successfully Edited !');
+        this.$toast.success('Successfully Updated !');
       } catch(e){
         this.$toast.error(e);
       }
