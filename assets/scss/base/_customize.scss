@@ -3,7 +3,6 @@
 
 :root {
   --light-primary: #13a5de;
-  --darkblue: #35495e;
   --gray: rgba(255, 255, 255, 0.2);
 }
 
@@ -16,10 +15,6 @@ body
   font-family: "Source Sans Pro", Arial, sans-serif;
   height: 100vh;
   margin: 0;
-}
-
-.wrapper .sidebar[data-background-color=darkblues]:after, .wrapper .sidebar[data-background-color=darkblues]:before {
-  background: var(--darkblue);
 }
 
 .sidebar{
@@ -95,6 +90,10 @@ ul.nav.sticky-bottom:before {
   width: calc(100% - 30px);
 }
 
+.wrapper .sidebar[data-background-color=darkblues] #style-3::-webkit-scrollbar {
+  width: 0;
+  background-color: #35495e;
+}
 
 .heart {
   animation: hearthing 1s ease infinite;
