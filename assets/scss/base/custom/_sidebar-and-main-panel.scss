@@ -27,7 +27,7 @@
         overflow-y: auto;
         width: 260px;
         z-index: 4;
-        padding-bottom: 100px;
+        padding-bottom: 136px;
 
         .dropdown .dropdown-backdrop{
           display: none !important;
@@ -68,9 +68,9 @@
                 display: block;
                 text-decoration: none;
                 position: relative;
-                text-transform: uppercase;
+                text-transform: none;
                 cursor: pointer;
-                font-size: 12px;
+                font-size: inherit;
                 padding: 10px 8px;
                 line-height: 30px;
                 opacity: .7;
@@ -222,6 +222,9 @@
     &[data-color="black"]{
       @include sidebar-color($dark-color);
     }
+    &[data-background-color="darkblues"]{
+        @include sidebar-color($dark-blue);
+      }
 
 
     // Active color changing
