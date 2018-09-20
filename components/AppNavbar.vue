@@ -22,7 +22,6 @@
       <button
         ref="rNav"
         class="navbar-toggler collapsed"
-        aria-controls="navigation-index"
         aria-expanded="false"
         aria-label="Toggle navigation"
         type="button"
