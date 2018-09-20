@@ -38,7 +38,7 @@
         <li class="nav-item">
           <a 
             href="#" 
-            class="btn btn-link text-success"
+            class="text-success"
             @click="newNginx">
             <i class="nc-icon nc-ruler-pencil text-success"/>
             New Nginx Config
@@ -47,7 +47,7 @@
         <li class="nav-item">
           <a 
             href="#" 
-            class="btn btn-link text-success"
+            class="text-success"
             @click="nginxRestart">
             <i class="nc-icon nc-spaceship text-success"/>
             Restart Nginx
